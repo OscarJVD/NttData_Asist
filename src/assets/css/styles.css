@@ -1,0 +1,140 @@
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  overflow: hidden;
+  background-color: black !important;
+}
+
+.text-lime {
+  color: rgb(70, 238, 70);
+}
+
+.border-fw-black {
+  text-shadow: 0 0 5px #000;
+}
+
+.border-fw-white {
+  text-shadow: 0 0 5px white;
+}
+
+/* #microphone {
+  background-image: url('/static/img/gifts/negro_coloreado.gif');
+} */
+
+#spectrumGif {
+  position: absolute;
+  top: -65%;
+  left: -108%;
+}
+
+#microphoneIcon {
+  position: absolute;
+  z-index: 1000;
+  top: 15%;
+  left: 21%;
+}
+
+#waves {
+  position: absolute;
+  z-index: 2;
+  top: 13.2%;
+}
+
+#start-app {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20%;
+  height: 10%;
+}
+
+#videos>video {
+  height: 71%;
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+  margin: 0 auto;
+  top: 0 !important;
+  z-index: 1;
+}
+
+
+#menu {
+  position: absolute;
+  z-index: 4;
+  top: 80%;
+  width: 100%;
+}
+
+
+
+#menu button:hover {
+  background-color: #c67000 !important;
+  outline: 3px solid white;
+  opacity: 1 !important;
+}
+
+#menu button {
+  background-color: #FF8F00;
+  border-radius: 47px;
+}
+
+#reload {
+  position: absolute;
+  top: 5.2%;
+  left: 83%;
+  width: 5%;
+  height: 3%;
+  z-index: 3;
+  top: 5% !important;
+  right: 5% !important;
+  text-align: right;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  opacity: 0.55;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease-in-out;
+}
+
+#reload:hover {
+  opacity: 1;
+  transform: scale(1.2);
+  -webkit-transform: scale(1.2);
+  -moz-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  -o-transform: scale(1.2);
+}
+
+#microphone {
+  position: absolute;
+  z-index: 9000;
+  top: 65%;
+  left: 45%;
+  text-align: center;
+  transition: ease-in-out;
+  -webkit-transition: ease-in-out;
+  -moz-transition: ease-in-out;
+  -ms-transition: ease-in-out;
+  -o-transition: ease-in-out;
+  width: 100px;
+  height: 100px;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  z-index: 9000;
+  /* right: 27rem; */
+  /* top: 2.9rem; */
+}
+
+#qr-code-space {
+  width: 30px;
+}

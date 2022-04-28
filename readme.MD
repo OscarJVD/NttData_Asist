@@ -1,0 +1,1 @@
+- Into this folders please add the folder assets/videos with all the videos

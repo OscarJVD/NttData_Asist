@@ -1,0 +1,6 @@
+.env
+node_modules
+src/assets/videos
+/assets/videos
+videos
+./src/assets/videos
