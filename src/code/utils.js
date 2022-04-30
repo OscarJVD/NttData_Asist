@@ -71,8 +71,11 @@ const handleRandomVideo = (videos,configVideoKey, artyom,commands,menusIn, butto
     const video = videos[configVideoKey].video;
     video.play()
     video.style ="display:block"
-    video.removeEventListener("ended", (e)=> handleEndVideo(artyom,commands,menusIn, buttonsYesOrNotCallback,  actionYes, actionNo))
-    video.addEventListener("ended", (e)=> handleEndVideo(artyom,commands,menusIn, buttonsYesOrNotCallback,  actionYes, actionNo))
+    const handleEndVideoRandon = ()=>{
+        handleEndVideo(artyom,commands,menusIn, buttonsYesOrNotCallback,  actionYes, actionNo)
+    };
+    video.removeEventListener("ended", handleEndVideoRandon)
+    video.addEventListener("ended", handleEndVideoRandon )
 };
 
 
@@ -84,8 +87,11 @@ const commonModules = (videos, config, artyom, commandsIn, buttonsYesOrNot, acti
     const video = videos[keyRandom].video;
     video.play()
     video.style ="display:block"
-    video.removeEventListener("ended", (e)=> handleRandomVideo(videos,keysConfig.QUESTION, artyom,commands,menus, buttonsYesOrNot,  actionYes, actionNo))
-    video.addEventListener("ended", (e)=> handleRandomVideo(videos,keysConfig.QUESTION, artyom,commands,menus, buttonsYesOrNot,  actionYes, actionNo))
+    const handleEndVideoCommon = (e)=>{
+        handleRandomVideo(videos,keysConfig.QUESTION, artyom,commands,menus, buttonsYesOrNot,  actionYes, actionNo)
+    };
+    video.removeEventListener("ended", handleEndVideoCommon)
+    video.addEventListener("ended", handleEndVideoCommon )
 }
 
 const addNewRecordOnStorage = async (questions, answer) => {

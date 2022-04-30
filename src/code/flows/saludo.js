@@ -10,14 +10,16 @@ function initFlow(videos, config, artyom, isInit = true){
     if(!isInit){
         return handleEndVIdeo(videos, config, artyom, isInit)
     }
+    const handleEventEndVideo = ()=>{
+        handleEndVIdeo(videos, config, artyom, isInit)
+    }
     artyom.dontObey();
     videos.pauseAll();
     videos.hideAll()
     videos[config.SALUDO].video.style ="display:block";
     videos[config.SALUDO].video.play();
-
-    videos[config.SALUDO].video.removeEventListener("ended", (e)=> handleEndVIdeo(videos, config, artyom, isInit))
-    videos[config.SALUDO].video.addEventListener("ended", (e)=> handleEndVIdeo(videos, config, artyom, isInit))
+    videos[config.SALUDO].video.removeEventListener("ended", handleEventEndVideo)
+    videos[config.SALUDO].video.addEventListener("ended", handleEventEndVideo)
 }
 
 
@@ -34,11 +36,14 @@ async function SabiasQue(videos, config, artyom, commandsIn, buttonsYesOrNot, pr
             }
         })
     }
+    const handleEventEndVideo = ()=>{
+        handleEndVIdeo(artyom,commands, buttonsYesOrNot, predictionsYes, predictionsNo, menus)
+    };
     const commands = Commands(commandsIn, videos, config, artyom,buttonsYesOrNot, menus, menuMain)
     videos.pauseAll()
     videos.hideAll()
     videos[config.SABIAS_QUE].video.play()
     videos[config.SABIAS_QUE].video.style ="display:block"
-    videos[config.SABIAS_QUE].video.removeEventListener("ended", (e)=> handleEndVIdeo(artyom,commands, buttonsYesOrNot, predictionsYes, predictionsNo, menus))
-    videos[config.SABIAS_QUE].video.addEventListener("ended", (e)=> handleEndVIdeo(artyom,commands, buttonsYesOrNot, predictionsYes, predictionsNo, menus))
+    videos[config.SABIAS_QUE].video.removeEventListener("ended",handleEventEndVideo)
+    videos[config.SABIAS_QUE].video.addEventListener("ended", handleEventEndVideo )
 }

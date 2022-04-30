@@ -145,6 +145,6 @@ body {
   /* top: 2.9rem; */
 }
 
-#qr-code-space {
+#qr-code-space > img{
   width: 30px;
 }

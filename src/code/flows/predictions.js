@@ -17,16 +17,22 @@ async function Predictions(videos, config, artyom, commandsIn, buttonsYesOrNot, 
         })
     };
     const handleCommingFinalQuestionVideo = (artyom,commands,  buttonsYesOrNot, predictionsYes, predictionsNo, menusIn)=>{
+        const handleEventEndedVideo = (e)=>{
+            handleCommingFinalQuestionVideoAnswer(artyom,commands, buttonsYesOrNot, predictionsYes, predictionsNo, menus)
+        };
         videos.pauseAll()
         videos.hideAll()
         videos[config.OTRA_TEMATICA].video.play()
         videos[config.OTRA_TEMATICA].video.style ="display:block"
-        videos[config.OTRA_TEMATICA].video.removeEventListener("ended", (e)=> handleCommingFinalQuestionVideoAnswer(artyom,commands, buttonsYesOrNot, predictionsYes, predictionsNo, menus))
-        videos[config.OTRA_TEMATICA].video.addEventListener("ended", (e)=> handleCommingFinalQuestionVideoAnswer(artyom,commands, buttonsYesOrNot, predictionsYes, predictionsNo, menus))
+        videos[config.OTRA_TEMATICA].video.removeEventListener("ended", handleEventEndedVideo)
+        videos[config.OTRA_TEMATICA].video.addEventListener("ended", handleEventEndedVideo)
 
     };
     // Se ejecuta si el usuario dice que sí a otro video random por voz
     const userSayYesOverride = (artyom,commands, buttonsYesOrNot, predictionsYes, predictionsNo, menus)=>{
+        const handleEndVideoEvent = ()=>{
+            handleCommingFinalQuestionVideo(artyom,commands, buttonsYesOrNot, predictionsYes, predictionsNo, menus)
+        };
         restoreNameConfirmationButtons(allButtons, config)
         resetMenuButtonsConfirmation(menus)
         videos.pauseAll()
@@ -34,8 +40,8 @@ async function Predictions(videos, config, artyom, commandsIn, buttonsYesOrNot, 
         const keyRandom  = getARandomKeyModule(videos, config.STORAGE_PREDICTIONS, config.ID_RANDOM_PREDICTION)
         videos[keyRandom].video.play()
         videos[keyRandom].video.style ="display:block"
-        videos[keyRandom].video.removeEventListener("ended", (e)=> handleCommingFinalQuestionVideo(artyom,commands, buttonsYesOrNot, predictionsYes, predictionsNo, menus))
-        videos[keyRandom].video.addEventListener("ended", (e)=> handleCommingFinalQuestionVideo(artyom,commands, buttonsYesOrNot, predictionsYes, predictionsNo, menus))
+        videos[keyRandom].video.removeEventListener("ended", handleEndVideoEvent)
+        videos[keyRandom].video.addEventListener("ended", handleEndVideoEvent )
     }
     // Se ejecuta si el usuario dice que No a otro video random por voz
     const userSayNoOverride = (artyom,commands, buttonsYesOrNot, predictionsYes, predictionsNo, menus)=>{
@@ -77,32 +83,41 @@ async function Predictions(videos, config, artyom, commandsIn, buttonsYesOrNot, 
         })
     };
     const handleVideoAsking = (artyom,commands,  buttonsYesOrNot, predictionsYes, predictionsNo, menusIn)=>{
+        const handleEndVideoPredictions = (e)=>{
+            handleEndVideoParticularQuestion(artyom,commands, buttonsYesOrNot, predictionsYes, predictionsNo, menus)
+        };
         videos.pauseAll()
         videos.hideAll()
            //video de la pregutna
         videos[config.PREDICTIONS_QUESTION_REPEAT].video.play()
         videos[config.PREDICTIONS_QUESTION_REPEAT].video.style ="display:block"
-        videos[config.PREDICTIONS_QUESTION_REPEAT].video.removeEventListener("ended", (e)=> handleEndVideoParticularQuestion(artyom,commands, buttonsYesOrNot, predictionsYes, predictionsNo, menus))
-        videos[config.PREDICTIONS_QUESTION_REPEAT].video.addEventListener("ended", (e)=> handleEndVideoParticularQuestion(artyom,commands, buttonsYesOrNot, predictionsYes, predictionsNo, menus))
+        videos[config.PREDICTIONS_QUESTION_REPEAT].video.removeEventListener("ended", handleEndVideoPredictions)
+        videos[config.PREDICTIONS_QUESTION_REPEAT].video.addEventListener("ended", handleEndVideoPredictions)
     };
 
     const handleEndVIdeo = (artyom,commands,  buttonsYesOrNot, predictionsYes, predictionsNo, menusIn) => {
         videos.pauseAll()
         videos.hideAll()
+        const handleEndVideoPredictionsRandom = (e)=>{
+            handleVideoAsking(artyom,commands, buttonsYesOrNot, predictionsYes, predictionsNo, menus)
+        }
         //Inmediatamente un video random
         const keyRandom  = getARandomKeyModule(videos, config.STORAGE_PREDICTIONS, config.ID_RANDOM_PREDICTION)
         videos[keyRandom].video.play()
         videos[keyRandom].video.style ="display:block"
-        videos[keyRandom].video.removeEventListener("ended", (e)=> handleVideoAsking(artyom,commands, buttonsYesOrNot, predictionsYes, predictionsNo, menus))
-        videos[keyRandom].video.addEventListener("ended", (e)=> handleVideoAsking(artyom,commands, buttonsYesOrNot, predictionsYes, predictionsNo, menus))
+        videos[keyRandom].video.removeEventListener("ended", handleEndVideoPredictionsRandom)
+        videos[keyRandom].video.addEventListener("ended", handleEndVideoPredictionsRandom)
 
     }
     const commands = Commands(commandsIn, videos, config, artyom,buttonsYesOrNot, menus, menuMain, allButtons)
+    const handleEndVideoMain = ()=>{
+        handleEndVIdeo(artyom,commands, buttonsYesOrNot, predictionsYes, predictionsNo, menus)
+    };
     videos.pauseAll()
     videos.hideAll()
     //Introduccion
     videos[config.PREDICTIONS_INTRODUCTION].video.play()
     videos[config.PREDICTIONS_INTRODUCTION].video.style ="display:block"
-    videos[config.PREDICTIONS_INTRODUCTION].video.removeEventListener("ended", (e)=> handleEndVIdeo(artyom,commands, buttonsYesOrNot, predictionsYes, predictionsNo, menus))
-    videos[config.PREDICTIONS_INTRODUCTION].video.addEventListener("ended", (e)=> handleEndVIdeo(artyom,commands, buttonsYesOrNot, predictionsYes, predictionsNo, menus))
+    videos[config.PREDICTIONS_INTRODUCTION].video.removeEventListener("ended", handleEndVideoMain )
+    videos[config.PREDICTIONS_INTRODUCTION].video.addEventListener("ended", handleEndVideoMain )
 }

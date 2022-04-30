@@ -18,11 +18,11 @@ function configApp(){
     const constants = {
         BUTTONS_CONFIRM_NAME:{
             DEFAULT:{
-                YES:"Si, Me gustaria",
+                YES:"Sí, me gustaría",
                 NO: "No, gracias"
             },
             PREDICTION:{
-                YES:"Si, buena idea",
+                YES:"Sí, buena idea",
                 NO: "De momento no"
             }
         },
@@ -80,7 +80,7 @@ function configApp(){
     }
     const commands = {
         saludo: ['Hola', 'hola', 'Holi', 'Buenos dias', 'Buenas tardes', 'Buenas noches', 'Buenas', 'Hello', 'Hi', 'Good Morning', 'Good afternoon', 'Good night'],
-        sabiasQue: ['sabias que', 'sabias', '¿Sabias que?', "sabias que?"],
+        sabiasQue: ['sabias que', 'sabias', '¿Sabías que?', '¿Sabías que?', "sabias que?"],
         prediction: ["Predicciones","predicciones","prediciones","predictions"],
         assitenteAws: ["asistente","Aws", "servicios conversacionales Aws", "servicios conversacionales aws", "servicios conversacionales aws"],
         nttData: ["nttdata","ntt data", "oportunidades", "oportunidades nttdata", "oportunidades ntt data"],

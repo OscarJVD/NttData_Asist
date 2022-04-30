@@ -7,13 +7,16 @@ function Despedida(videos, constants, artyom, commands, buttonsYesOrNot, userSay
     };
 
     const handleEndVIdeo = () => {
+        const handleEndEventVideo = (e)=>{
+            handleEndFlowApp(menus, allButtons)
+        }
         videos.pauseAll()
         videos.hideAll()
         //Inmediatamente un video random
         videos[constants.DESPEDIDA].video.play()
         videos[constants.DESPEDIDA].video.style ="display:block"
-        videos[constants.DESPEDIDA].video.removeEventListener("ended", (e)=> handleEndFlowApp(menus, allButtons))
-        videos[constants.DESPEDIDA].video.addEventListener("ended", (e)=> handleEndFlowApp(menus, allButtons))
+        videos[constants.DESPEDIDA].video.removeEventListener("ended", handleEndEventVideo )
+        videos[constants.DESPEDIDA].video.addEventListener("ended", handleEndEventVideo )
     };
 
     videos.pauseAll()
@@ -23,6 +26,6 @@ function Despedida(videos, constants, artyom, commands, buttonsYesOrNot, userSay
 
     videos[keyRandom].video.play()
     videos[keyRandom].video.style ="display:block"
-    videos[keyRandom].video.removeEventListener("ended", (e)=> handleEndVIdeo())
-    videos[keyRandom].video.addEventListener("ended", (e)=> handleEndVIdeo())
+    videos[keyRandom].video.removeEventListener("ended", handleEndVIdeo)
+    videos[keyRandom].video.addEventListener("ended", handleEndVIdeo)
 }
