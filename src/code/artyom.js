@@ -14,15 +14,17 @@ function ArtyomInit(constants, commandsConfig){
             });
             return artyom
         },
-        async loadCommands(videos, buttonsYesOrNot, menus, buttonsMenu, allButtons, buttonReload){
+        async loadCommands(videos, buttonsYesOrNot, menus, buttonsMenu, allButtons, buttonReload, menusMain){
             const commands = Commands(commandsConfig, videos, constants, artyom, buttonsYesOrNot, menus, buttonsMenu, allButtons);
             buttonReload.addEventListener("click", ()=>{
                 artyom.emptyCommands();
                 artyom.addCommands(commands.main);
                 Idle(videos, constants, artyom)
                 resetMenuButtonsConfirmation(menus)
+                enableAllButtons({ ...menusMain })
                 videos.removeEventDontObey()
                 videos.addEventDontObey()
+                document.querySelector("#qr-code-space").style.display = "none"
             })
             artyom.addCommands(commands.main);
         }

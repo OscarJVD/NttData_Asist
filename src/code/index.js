@@ -130,7 +130,7 @@ async function bootstrap() {
   menuConfirmation.style.display = "none"
   const buttonsYesOrNot = MenuYesOrNo(buttonConfirmationYes, buttonConfirmationNo, menuGeneral, menuConfirmation)
   const buttonsMenu = MenuMain(menusMain);
-  await artyomInit.loadCommands(videlosLoaded, buttonsYesOrNot, menus, buttonsMenu, allButtons, buttonReload)
+  await artyomInit.loadCommands(videlosLoaded, buttonsYesOrNot, menus, buttonsMenu, allButtons, buttonReload, menusMain)
   console.log(menusMain)
   console.log("Videos", videlosLoaded)
   Idle(videlosLoaded, constants, artyom)

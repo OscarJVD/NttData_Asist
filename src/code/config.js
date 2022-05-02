@@ -65,9 +65,9 @@ function configApp(){
         AWS_RANDOM_3: ID_RANDOM_AWS+"#3",
         AWS_CUSTOM_QUESTION: "aws-custom-question",
         //nttdata que part
-        NTTDATA_1: ID_RANDOM_NTTDATA+"#1",
-        NTTDATA_3: ID_RANDOM_NTTDATA+"#2",
-        NTTDATA_4: ID_RANDOM_NTTDATA+"#3",
+        NTTDATA_RANDOM_1: ID_RANDOM_NTTDATA+"#1",
+        NTTDATA_RANDOM_2: ID_RANDOM_NTTDATA+"#2",
+        NTTDATA_RANDOM_3: ID_RANDOM_NTTDATA+"#3",
         //despedida
         DESPEDIDA:"despedida",
         RH_DESPEDIDA_RANDOM_1: ID_RANDOM_DESPEDIDA+"#1",
