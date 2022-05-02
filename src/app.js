@@ -2,10 +2,9 @@ require("dotenv").config();
 const express = require('express')
 const app = express()
 const path = require('path')
-const port = 3000
+const port = 3411
 const livereload = require("livereload");
 const connectLiveReload = require("connect-livereload");
-
 const liveReloadServer = livereload.createServer({});
 liveReloadServer.server.once("connection", () => {
   setTimeout(() => {

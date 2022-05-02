@@ -6,16 +6,6 @@ body {
   background-color: black !important;
 }
 
-
-
-#videos video {
-  position: fixed !important;
-  overflow: hidden !important;
-  padding: 0 !important;
-  margin: 0 !important;
-  top: 0 !important;
-}
-
 .text-lime {
   color: rgb(70, 238, 70);
 }
@@ -27,10 +17,6 @@ body {
 .border-fw-white {
   text-shadow: 0 0 5px white;
 }
-
-/* #microphone {
-  background-image: url('/static/img/gifts/negro_coloreado.gif');
-} */
 
 #spectrumGif {
   position: absolute;
@@ -61,15 +47,15 @@ body {
 }
 
 #videos>video {
-  height: 71%;
-  position: relative;
+  height: 75%;
+  position: fixed;
   overflow: hidden;
   padding: 0;
   margin: 0 auto;
   top: 0 !important;
   z-index: 1;
+  width:  100%;
 }
-
 
 #menu {
   position: absolute;
@@ -77,8 +63,6 @@ body {
   top: 80%;
   width: 100%;
 }
-
-
 
 #menu button:hover {
   background-color: #c67000 !important;
@@ -135,8 +119,8 @@ body {
   -moz-transition: ease-in-out;
   -ms-transition: ease-in-out;
   -o-transition: ease-in-out;
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 151px;
   -moz-border-radius: 50%;
   -webkit-border-radius: 50%;
   border-radius: 50%;
