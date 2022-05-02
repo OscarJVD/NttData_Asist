@@ -4,7 +4,7 @@ function Commands(commands, videos, constants, artyom, buttonsYesOrNot, menus, m
     const questionNttdata = (e)=> addNewRecordOnStorage("Que tematica elijes?", commands.nttData[e])
     const questionPrediction = (e)=> addNewRecordOnStorage("Que tematica elijes?", commands.prediction[e])
     const questionSabiasQue = (e)=> addNewRecordOnStorage("Que tematica elijes?", commands.sabiasQue[e])
-    const questionAws = (e)=> addNewRecordOnStorage("Que tematica elijes?", commands.aws[e]);
+    const questionAws = (e)=> addNewRecordOnStorage("Que tematica elijes?", commands.assitenteAws[e]);
 
     const userSayYes = async (artyom, mainOut, menusIn)=>{
         try{

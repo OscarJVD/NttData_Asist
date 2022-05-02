@@ -4,6 +4,7 @@ function Despedida(videos, constants, artyom, commands, buttonsYesOrNot, userSay
     const handleEndFlowApp = (menus, allButtons)=>{
         hideQr(menus, allButtons)
         resetMenuButtonsConfirmation(menus)
+        artyom.dontObey();
     };
 
     const handleEndVIdeo = () => {

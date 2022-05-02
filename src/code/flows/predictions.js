@@ -1,5 +1,5 @@
 
-async function Predictions(videos, config, artyom, commandsIn, buttonsYesOrNot, predictionsYes, predictionsNo, menus, menuMain, allButtons){
+async function PredictionsLargeFlow(videos, config, artyom, commandsIn, buttonsYesOrNot, predictionsYes, predictionsNo, menus, menuMain, allButtons){
     const handleCommingFinalQuestionVideoAnswer = (artyom,commands, buttonsYesOrNot, predictionsYes, predictionsNo, menus)=>{
         artyom.emptyCommands();
         artyom.addCommands(commands.yesOrNo);
@@ -18,7 +18,8 @@ async function Predictions(videos, config, artyom, commandsIn, buttonsYesOrNot, 
     };
     const handleCommingFinalQuestionVideo = (artyom,commands,  buttonsYesOrNot, predictionsYes, predictionsNo, menusIn)=>{
         const handleEventEndedVideo = (e)=>{
-            handleCommingFinalQuestionVideoAnswer(artyom,commands, buttonsYesOrNot, predictionsYes, predictionsNo, menus)
+            console.log("Into when video ends, other tematic")
+            handleCommingFinalQuestionVideoAnswer(artyom,commands, buttonsYesOrNot, predictionsYes, predictionsNo, menusIn)
         };
         videos.pauseAll()
         videos.hideAll()
@@ -31,6 +32,7 @@ async function Predictions(videos, config, artyom, commandsIn, buttonsYesOrNot, 
     // Se ejecuta si el usuario dice que sí a otro video random por voz
     const userSayYesOverride = (artyom,commands, buttonsYesOrNot, predictionsYes, predictionsNo, menus)=>{
         const handleEndVideoEvent = ()=>{
+            console.log("Into event when the user say yes to see other video")
             handleCommingFinalQuestionVideo(artyom,commands, buttonsYesOrNot, predictionsYes, predictionsNo, menus)
         };
         restoreNameConfirmationButtons(allButtons, config)
@@ -57,13 +59,13 @@ async function Predictions(videos, config, artyom, commandsIn, buttonsYesOrNot, 
                 indexes:commandsIn.confirmacion,
                 action: (e)=> {
                     addNewRecordOnStorage("Quieres ver otra prediccion?",commandsIn.confirmacion[e])
-                    userSayYesOverride(artyom,commands, buttonsYesOrNot, predictionsYes, predictionsNo, menus)
+                    userSayYesOverride(artyom,commands, buttonsYesOrNot, predictionsYes, predictionsNo, menusIn)
                 }
             },
             {
                 indexes:commandsIn.negacion,
                 action: (e)=> {
-                    userSayNoOverride(artyom,commands, buttonsYesOrNot, predictionsYes, predictionsNo, menus)
+                    userSayNoOverride(artyom,commands, buttonsYesOrNot, predictionsYes, predictionsNo, menusIn)
                     addNewRecordOnStorage("Quieres ver otra prediccion?",commandsIn.negacion[e])
                 }
             }
@@ -84,7 +86,8 @@ async function Predictions(videos, config, artyom, commandsIn, buttonsYesOrNot, 
     };
     const handleVideoAsking = (artyom,commands,  buttonsYesOrNot, predictionsYes, predictionsNo, menusIn)=>{
         const handleEndVideoPredictions = (e)=>{
-            handleEndVideoParticularQuestion(artyom,commands, buttonsYesOrNot, predictionsYes, predictionsNo, menus)
+            console.log("Into event finish question to ask again other video")
+            handleEndVideoParticularQuestion(artyom,commands, buttonsYesOrNot, predictionsYes, predictionsNo, menusIn)
         };
         videos.pauseAll()
         videos.hideAll()
@@ -99,7 +102,8 @@ async function Predictions(videos, config, artyom, commandsIn, buttonsYesOrNot, 
         videos.pauseAll()
         videos.hideAll()
         const handleEndVideoPredictionsRandom = (e)=>{
-            handleVideoAsking(artyom,commands, buttonsYesOrNot, predictionsYes, predictionsNo, menus)
+            console.log("Into event to reproduce random video")
+            handleVideoAsking(artyom,commands, buttonsYesOrNot, predictionsYes, predictionsNo, menusIn)
         }
         //Inmediatamente un video random
         const keyRandom  = getARandomKeyModule(videos, config.STORAGE_PREDICTIONS, config.ID_RANDOM_PREDICTION)
@@ -111,6 +115,7 @@ async function Predictions(videos, config, artyom, commandsIn, buttonsYesOrNot, 
     }
     const commands = Commands(commandsIn, videos, config, artyom,buttonsYesOrNot, menus, menuMain, allButtons)
     const handleEndVideoMain = ()=>{
+        console.log("Into event to reproduce introduction Predictions")
         handleEndVIdeo(artyom,commands, buttonsYesOrNot, predictionsYes, predictionsNo, menus)
     };
     videos.pauseAll()
@@ -120,4 +125,19 @@ async function Predictions(videos, config, artyom, commandsIn, buttonsYesOrNot, 
     videos[config.PREDICTIONS_INTRODUCTION].video.style ="display:block"
     videos[config.PREDICTIONS_INTRODUCTION].video.removeEventListener("ended", handleEndVideoMain )
     videos[config.PREDICTIONS_INTRODUCTION].video.addEventListener("ended", handleEndVideoMain )
+}
+/**
+ * @Author Andres Lobaton
+ * @Description This change on the flow if for deliver a solution faster, Ideally the Predictions should be in a different flow.
+ * It should has flow that allow ask if want another video or not.
+*/
+
+
+async function Predictions(videos, config, artyom, commandsIn, buttonsYesOrNot, actionYes, actionNo, menus, menuMain, allButtons){
+    const keysConfig = {
+        STORAGE: config.STORAGE_PREDICTIONS,
+        ID_RANDOM: config.ID_RANDOM_PREDICTION,
+        QUESTION: config.OTRA_TEMATICA_SIMPLE
+    }
+    commonModules(videos, config, artyom, commandsIn, buttonsYesOrNot, actionYes, actionNo, menus, menuMain, allButtons, keysConfig)
 }

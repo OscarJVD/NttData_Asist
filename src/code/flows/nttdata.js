@@ -2,7 +2,7 @@ async function NttData(videos, config, artyom, commandsIn, buttonsYesOrNot, acti
     const keysConfig = {
         STORAGE: config.STORAGE_NTTDATA,
         ID_RANDOM: config.ID_RANDOM_NTTDATA,
-        QUESTION: config.OTRA_TEMATICA
+        QUESTION: config.OTRA_TEMATICA_SIMPLE
     }
     commonModules(videos, config, artyom, commandsIn, buttonsYesOrNot, actionYes, actionNo, menus, menuMain, allButtons, keysConfig)
 }

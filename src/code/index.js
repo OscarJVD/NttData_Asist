@@ -1,4 +1,7 @@
 
+// If is production, uncomment this
+// console.log = ()=>{};
+
 window.nttdata = {} // It's a global variable
 const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 const ID_IDLE = "DFSDFSD"
@@ -98,10 +101,10 @@ async function bootstrap() {
     Object.values(this).forEach(video => {
       if (video.video.id == ID_IDLE) return;
       video.video.addEventListener("ended", handleObey)
-      video.video.addEventListener("pause", handleObey)
+      // video.video.addEventListener("pause", handleObey)
     });
   }
-  
+
   videlosLoaded.__proto__.addEventDontObey = function () {
 
     const handleEventPlay = (e) => {
@@ -155,11 +158,9 @@ async function bootstrap() {
     if (artyom.isObeying() && artyom.isRecognizing()) {
       document.getElementById("microphoneIcon").classList.remove('text-white')
       document.getElementById("microphoneIcon").classList.add('text-lime')
-      // buttonMicrophone.textContent = "Microphone: ON"
     } else {
       document.getElementById("microphoneIcon").classList.remove('text-lime')
       document.getElementById("microphoneIcon").classList.add('text-white')
-      // buttonMicrophone.textContent = "Microphone: OFF"
     }
   }, 1000);
 

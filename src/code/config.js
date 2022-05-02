@@ -33,18 +33,19 @@ function configApp(){
         ID_RANDOM_NTTDATA,
         ID_RANDOM_AWS,
         //idle
-        IDLE:"idle",
-        OTRA_TEMATICA:"otra-tematica",
+        IDLE:"idle.234",
+        OTRA_TEMATICA:"otra-tematica-123123",
+        OTRA_TEMATICA_SIMPLE:"otra-tematica-simple-xx33423-2343",
         //init part
         SALUDO:"saludo",
-        PRESENTACION_INICIAL_ONLY_QUESTIONS: "presentacion-inicial-only-questions",
-        PRESENTACION_INICIAL: "presentacion-inicial",
+        PRESENTACION_INICIAL_ONLY_QUESTIONS: "presentacion-inicial-only-questions-2342",
+        PRESENTACION_INICIAL: "presentacion-inicial-23423",
 
-        SABIAS_QUE:"sabias-que",
-        NTT_DATA:"ntt-data",
-        ASSISTANT:"assistant",
+        SABIAS_QUE:"sabias-que-0394",
+        NTT_DATA:"ntt-data-32422",
+        ASSISTANT:"assistant-78945",
         //predictions part
-        PREDICTIONS_INTRODUCTION:"predicciones",
+        PREDICTIONS_INTRODUCTION:"predicciones-34534",
         PREDICTIONS_RANDOM_1: ID_RANDOM_PREDICTION+"#1",
         PREDICTIONS_RANDOM_2: ID_RANDOM_PREDICTION+"#2",
         PREDICTIONS_RANDOM_3: ID_RANDOM_PREDICTION+"#3",
@@ -62,6 +63,7 @@ function configApp(){
         AWS_RANDOM_1: ID_RANDOM_AWS+"#1",
         AWS_RANDOM_2: ID_RANDOM_AWS+"#2",
         AWS_RANDOM_3: ID_RANDOM_AWS+"#3",
+        AWS_CUSTOM_QUESTION: "aws-custom-question",
         //nttdata que part
         NTTDATA_1: ID_RANDOM_NTTDATA+"#1",
         NTTDATA_3: ID_RANDOM_NTTDATA+"#2",
@@ -79,14 +81,17 @@ function configApp(){
         STORAGE_DESPEDIDA:"STORAGE_DESPEDIDA",
     }
     const commands = {
-        saludo: ['Hola', 'hola', 'Holi', 'Buenos dias', 'Buenas tardes', 'Buenas noches', 'Buenas', 'Hello', 'Hi', 'Good Morning', 'Good afternoon', 'Good night'],
-        sabiasQue: ['sabias que', 'sabias', '¿Sabías que?', '¿Sabías que?', "sabias que?"],
-        prediction: ["Predicciones","predicciones","prediciones","predictions"],
-        assitenteAws: ["asistente","Aws", "servicios conversacionales Aws", "servicios conversacionales aws", "servicios conversacionales aws"],
-        nttData: ["nttdata","ntt data", "oportunidades", "oportunidades nttdata", "oportunidades ntt data"],
-        confirmacion:["Sí.","si", "dale caña", "me gustaria", "si me gustaria", "Sí, buena idea", "buena idea"],
-        negacion:["No.", "no", " no, gracias", "No, gracias", "No de momento", "No, de momento"]
-    }
+        saludo: [ 'hola', 'buena mañana', 'buenas noches', 'buenas tardes', 'buenos dias', 'buenos días', 'como estas', 'como estás', 'cómo estas', 'cómo estás', 'holi', 'oli', 'que tal', 'qué tal', 'saludo', 'saludos', 'hello', 'Hello'],
+        sabiasQue: ['Sabías', 'sabias', 'que', 'sabias q', 'sabias que', 'sabias qué', 'sabía que', 'sabias', '¿Sabias que?'],
+        prediction: ['predicciones', 'predicción', 'prediccion', 'predixion', 'prediccio', 'predizion', 'prdiccion'],
+        assitenteAws: ['servicio', 'servicios', 'conversacional', 'conversacionales', 'AWS', 'servicios conversacionales', 'servicio conversacional', 'servicíos', 'servicios conversacional', 'asistentes', 'Chatbot', 'Amazon', 'Servicios conversacionales amazon web service', 'Amazon web', 'asistentes conversacionales Amazon'],
+        nttData: ['oportunidad', 'oportunidades', 'oportunidades NTT', 'Oprtunidades NTT Data', 'oportunidades NTTData', 'NTt Data', 'Oportunidad', 'oportunidade nttdata'],
+        confirmacion:['si me gustaria', 'si gracias', 'si claro', 'me gustaria', 'Me gustaría', 'claro', 'confirmar', 'dale', 'ies', 'lles', 'me gustaria', 'me gustaría', 'oc', 'ocai', 'ok', 'okay', 'okei', 'okey', 'oks', 'oquei', 'oquey', 'si', 'sí', 'sisi', 'vale', 'venga', 'yes'], // Attend when the user says "yes" to other tematic
+        negacion: ['no gracias', 'No Gracias', 'por ahora no', 'no', 'ahora no', 'la verdad es que no', 'mejor no', 'mejor que no', 'ni de broma', 'ni de coña', 'no es necesario', 'no hace falta', 'no me apetece', 'no quiero', 'paso', 'que va', 'qué va', 'rechazar'],// Attend when the user says "no" to other tematic
+        confirmacionPrediction: ['buena idea', 'genial', 'adelante', 'vamos a ello', 'estupendo', 'Buena idea', 'por supuesto'],
+        negacionPrediction : ['mejor luego', 'Mejor luego', 'lo veré luego', 'otro día', ' despues']
+    };
+
     const folders = {
         idle: BASE_URL+"0_IDLE/",
         presentacion: BASE_URL+"2_PRESENTACIÓN_INICIAL/",
@@ -104,8 +109,8 @@ function configApp(){
         constants,
         videos:{
             [constants.IDLE]:folders.idle+"0_IDLE.mp4",
-            [constants.OTRA_TEMATICA]: folders.predictions+"10_PREGUNTA_PREDICCIONES_OTRA_TEMATICA_.mp4"
-            ,
+            [constants.OTRA_TEMATICA]: folders.predictions+"10_PREGUNTA_PREDICCIONES_OTRA_TEMATICA_.mp4",
+            [constants.OTRA_TEMATICA_SIMPLE]:folders.nttData+"20_SERVICIOSCONVERSA_NTTDATA_PREGUNTA_OTRA_TEMATICA.mp4",
             [constants.SALUDO]: folders.saludo+"1_SALUDO_INICIAL.mp4",
 
             [constants.PRESENTACION_INICIAL]: folders.presentacion+"2_PRESENTACIÓN_INICIAL.mp4",

@@ -2,12 +2,12 @@
 const getARandomKeyModule = (videos, keyStorage, idStartsVideos) => {
     const getKeyRandomFromAndObject = (videosRandomIn) => Object.keys(videosRandomIn)[Math.floor(Math.random() * Object.keys(videosRandomIn).length)];;
     const ID = idStartsVideos;
-    const videosRandom = Object.fromEntries(Object.entries(videos).filter(([key])=> key.startsWith(ID)));
+    const videosRandom = Object.fromEntries(Object.entries(videos).filter(([key])=> key.startsWith(ID)) );
     let mustRepeat = true, keyRandom = null;
     do{
         keyRandom = getKeyRandomFromAndObject(videosRandom);
         if(window.nttdata[keyStorage].length >= Object.keys(videosRandom).length){
-            window.nttdata.randomsPredictions = []
+            window.nttdata[keyStorage] = []
         }
         if(!window.nttdata[keyStorage].includes(keyRandom)){
             window.nttdata[keyStorage].push(keyRandom)
@@ -44,16 +44,26 @@ const resetMenuButtonsConfirmation = (menusIn) => {
 
 const showQr =(menus, allButtons)=>{
     Object.values(menus).forEach(menu=> menu.style.display = "none");
+    try{
+        document.getElementById("menu-general").style.display = "none";
+    }catch(err){
+        console.log(err)
+    }
     allButtons.qrCodeSpace.style.display = "block";
 };
 
 const hideQr =(menus, allButtons)=>{
     Object.values(menus).forEach(menu=> menu.style.display = "block");
+    try{
+        document.getElementById("menu-general").style.display = "block";
+    }catch(err){
+        console.log(err)
+    }
     allButtons.qrCodeSpace.style.display = "none";
 };
 
 
-const handleEndVideo = (artyom,commands,menusIn, buttonsYesOrNotCallback, actionYes, actionNo) => {
+const handleEndVideo = (artyom,commands,menusIn, buttonsYesOrNotCallback, actionYes, actionNo, allButtons) => {
     artyom.emptyCommands();
     artyom.addCommands(commands.yesOrNo);
     artyom.obey();
@@ -61,18 +71,18 @@ const handleEndVideo = (artyom,commands,menusIn, buttonsYesOrNotCallback, action
         if(button) {
             actionYes(artyom, commands.main, menusIn)
         }else{
-            actionNo(artyom, commands.main, menusIn)
+            actionNo(artyom, commands.main, menusIn, allButtons)
         }
     })
 }
-const handleRandomVideo = (videos,configVideoKey, artyom,commands,menusIn, buttonsYesOrNotCallback, actionYes, actionNo)=>{
+const handleRandomVideo = (videos,configVideoKey, artyom,commands,menusIn, buttonsYesOrNotCallback, actionYes, actionNo, allButtons)=>{
     videos.pauseAll()
     videos.hideAll()
     const video = videos[configVideoKey].video;
     video.play()
     video.style ="display:block"
     const handleEndVideoRandon = ()=>{
-        handleEndVideo(artyom,commands,menusIn, buttonsYesOrNotCallback,  actionYes, actionNo)
+        handleEndVideo(artyom,commands,menusIn, buttonsYesOrNotCallback,  actionYes, actionNo, allButtons)
     };
     video.removeEventListener("ended", handleEndVideoRandon)
     video.addEventListener("ended", handleEndVideoRandon )
@@ -88,7 +98,7 @@ const commonModules = (videos, config, artyom, commandsIn, buttonsYesOrNot, acti
     video.play()
     video.style ="display:block"
     const handleEndVideoCommon = (e)=>{
-        handleRandomVideo(videos,keysConfig.QUESTION, artyom,commands,menus, buttonsYesOrNot,  actionYes, actionNo)
+        handleRandomVideo(videos,keysConfig.QUESTION, artyom,commands,menus, buttonsYesOrNot,  actionYes, actionNo, allButtons)
     };
     video.removeEventListener("ended", handleEndVideoCommon)
     video.addEventListener("ended", handleEndVideoCommon )
