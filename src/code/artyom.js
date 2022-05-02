@@ -25,6 +25,7 @@ function ArtyomInit(constants, commandsConfig){
                 videos.removeEventDontObey()
                 videos.addEventDontObey()
                 document.querySelector("#qr-code-space").style.display = "none"
+                artyom.donyObey()
             })
             artyom.addCommands(commands.main);
         }
