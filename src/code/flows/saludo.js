@@ -22,28 +22,3 @@ function initFlow(videos, config, artyom, isInit = true){
     videos[config.SALUDO].video.addEventListener("ended", handleEventEndVideo)
 }
 
-
-async function SabiasQue(videos, config, artyom, commandsIn, buttonsYesOrNot, predictionsYes, predictionsNo, menus, menuMain){
-    const handleEndVIdeo = (artyom,commands,  buttonsYesOrNot, predictionsYes, predictionsNo, menusIn) => {
-        artyom.emptyCommands();
-        artyom.addCommands(commands.yesOrNo);
-        artyom.obey();
-        buttonsYesOrNot((button)=>{
-            if(button) {
-                predictionsYes(artyom, commands.main, menusIn)
-            }else{
-                predictionsNo(artyom, commands.main, menusIn)
-            }
-        })
-    }
-    const handleEventEndVideo = ()=>{
-        handleEndVIdeo(artyom,commands, buttonsYesOrNot, predictionsYes, predictionsNo, menus)
-    };
-    const commands = Commands(commandsIn, videos, config, artyom,buttonsYesOrNot, menus, menuMain)
-    videos.pauseAll()
-    videos.hideAll()
-    videos[config.SABIAS_QUE].video.play()
-    videos[config.SABIAS_QUE].video.style ="display:block"
-    videos[config.SABIAS_QUE].video.removeEventListener("ended",handleEventEndVideo)
-    videos[config.SABIAS_QUE].video.addEventListener("ended", handleEventEndVideo )
-}

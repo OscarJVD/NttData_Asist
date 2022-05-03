@@ -134,10 +134,17 @@ async function PredictionsLargeFlow(videos, config, artyom, commandsIn, buttonsY
 
 
 async function Predictions(videos, config, artyom, commandsIn, buttonsYesOrNot, actionYes, actionNo, menus, menuMain, allButtons){
-    const keysConfig = {
-        STORAGE: config.STORAGE_PREDICTIONS,
-        ID_RANDOM: config.ID_RANDOM_PREDICTION,
-        QUESTION: config.OTRA_TEMATICA_SIMPLE
-    }
-    commonModules(videos, config, artyom, commandsIn, buttonsYesOrNot, actionYes, actionNo, menus, menuMain, allButtons, keysConfig)
+    const handleEndVideoPredictions = ()=>{
+        const keysConfig = {
+            STORAGE: config.STORAGE_PREDICTIONS,
+            ID_RANDOM: config.ID_RANDOM_PREDICTION,
+            QUESTION: config.OTRA_TEMATICA_SIMPLE
+        }
+        commonModules(videos, config, artyom, commandsIn, buttonsYesOrNot, actionYes, actionNo, menus, menuMain, allButtons, keysConfig)
+    };
+
+    videos[config.PREDICTIONS_INTRODUCTION].video.play()
+    videos[config.PREDICTIONS_INTRODUCTION].video.style ="display:block"
+    videos[config.PREDICTIONS_INTRODUCTION].video.removeEventListener("ended", handleEndVideoPredictions )
+    videos[config.PREDICTIONS_INTRODUCTION].video.addEventListener("ended", handleEndVideoPredictions )
 }
