@@ -48,7 +48,7 @@ body {
 }
 
 #videos>video {
-  height: 75%;
+  height: 71%;
   position: fixed;
   overflow: hidden;
   padding: 0;
@@ -83,7 +83,7 @@ body {
 
 #reload {
   position: absolute;
-  top: 5.2%;
+  top: 9.2%;
   left: 83%;
   width: 5%;
   height: 3%;
@@ -127,7 +127,7 @@ body {
   cursor: pointer;
   position: absolute;
   z-index: 9000;
-  top: 65%;
+  top: 51%;
   /* left: 37%; */
   text-align: center;
   transition: ease-in-out;

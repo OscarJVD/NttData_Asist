@@ -5,6 +5,7 @@
 window.nttdata = {} // It's a global variable
 const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 const ID_IDLE = "DFSDFSD"
+
 //CODIGO RARO
 const showIdle = (videosIn, config) => {
   // videosIn.pauseAll();
@@ -13,6 +14,7 @@ const showIdle = (videosIn, config) => {
   videosIn[config.IDLE].video.play();
   console.log("HIDEyES", videosIn[config.IDLE].video)
 };
+
 const hideIdle = (videosIn, config) => {
   try {
 
@@ -170,7 +172,7 @@ async function bootstrap() {
 }
 
 async function init() {
-  setInterval(() => {
+  setInterval(async () => {
     const tiempoTranscurrido = Date.now();
     const hoy = new Date(tiempoTranscurrido);
     let validHoy = hoy.toLocaleDateString()
