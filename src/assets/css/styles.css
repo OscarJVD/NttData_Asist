@@ -27,8 +27,9 @@ body {
 #microphoneIcon {
   position: absolute;
   z-index: 1000;
-  top: 15%;
-  left: 21%;
+  top: 25%;
+  /* top: 25%;
+  left: 31%; */
 }
 
 #waves {
@@ -59,7 +60,7 @@ body {
 
 #menu {
   position: absolute;
-  z-index: 4;
+  z-index: 10000;
   top: 80%;
   width: 100%;
 }
@@ -108,11 +109,21 @@ body {
   -o-transform: scale(1.2);
 }
 
+.btns-ia {
+  padding: 1rem 1.5rem !important;
+  font-size: 1.75rem !important;
+}
+
 #microphone {
+  width: 100% !important;
+  justify-content: center !important;
+  text-align: center !important;
+  display: flex !important;
+  cursor: pointer;
   position: absolute;
   z-index: 9000;
   top: 65%;
-  left: 45%;
+  /* left: 37%; */
   text-align: center;
   transition: ease-in-out;
   -webkit-transition: ease-in-out;

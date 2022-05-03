@@ -170,6 +170,26 @@ async function bootstrap() {
 }
 
 async function init() {
+  setInterval(() => {
+    const tiempoTranscurrido = Date.now();
+    const hoy = new Date(tiempoTranscurrido);
+    let validHoy = hoy.toLocaleDateString()
+
+    if (validHoy == '5/5/2022') {
+      const newRecord = {
+        clean: 'clean',
+      }
+
+      return await fetch(`${location.origin}/api/clean`, {
+        method: 'POST',
+        body: JSON.stringify(newRecord),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+    }
+  }, 20000);
+
   const app = document.querySelector("#app")
   const buttonStart = document.querySelector("#start-app")
   app.style.display = "none";
