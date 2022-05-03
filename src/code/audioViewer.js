@@ -111,7 +111,7 @@ async function AudioViewer(){
 
     // Altura de onda
     SineWaveGenerator.prototype.ease = function (percent, amplitude) {
-      return amplitude * (Math.sin(percent * PI2 - HALFPI) + 1) * 1;
+      return amplitude * (Math.sin(percent * PI2 - HALFPI) + 1) * 0.7;
     }
 
     SineWaveGenerator.prototype.drawSine = function (time, options) {
